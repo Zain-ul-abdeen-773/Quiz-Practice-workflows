@@ -1,0 +1,35 @@
+name: Fourth workflow from Lab 9
+run-name: ${{ github.actor }} triggered workflow on even ${{ github.event_name }} on branch ${{ github.ref_name }}
+on:
+ push:
+  branches: main
+ pull_request:
+  branches: main
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Print repo details
+        run: echo ${{ github.repository }}
+  second-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo a message
+        run: echo salient
+  third-job:
+    runs-on: ubuntu-latest
+    needs: second-job
+    if: always()
+    steps:
+      - name: send notification if second job failed
+        if: ${{ needs.second_job.result == 'failed' }}
+        run: echo "Second job failed"
+      - name:  send notification if second job succeded
+        if: ${{ needs.second_job.result == 'success' }}
+        run: echo "second job passed"
+      - name: always run
+        if: always()
+        run: echo "Second job satus is ${{ needs.second_job.result }}"
