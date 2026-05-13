@@ -14,4 +14,5 @@ jobs:
       run: cat first.txt
     - name: print current date and time
       run: date
-    - run: Branch name ${{github.ref_name}}
+    - name: printing branch name
+      run: echo ${{github.ref_name}}
