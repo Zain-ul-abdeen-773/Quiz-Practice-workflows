@@ -1,0 +1,17 @@
+name: First workflow from lab 9
+run-name: ${{github.actor}} triggered workflow on event ${{github.event_name}} on repository ${{github.repository}}
+
+on:
+ workflow_dispatch:
+
+jobs:
+  first-job:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Print contents of file
+      run: cat first.txt
+    - name: print current date and time
+      run: date
+    - output: Branch name ${{github.ref_name}}
