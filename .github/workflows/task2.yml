@@ -1,0 +1,22 @@
+name: sencond workflow from Lab 9
+run-name: ${{ github.actor }} triggered workflow on even ${{ github.event_name }} on branch ${{ github.ref_name }}
+on:
+ push:
+  branches: main
+ pull_request:
+  branches: main
+      
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Print repo details
+        run: echo ${{ github.repository }}
+  second-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo a message
+        run: echo "Second workflow"
+
