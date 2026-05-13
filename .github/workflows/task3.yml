@@ -1,5 +1,5 @@
 name: Third workflow in Lab 9
-run-name: ${{ github.actor }} triggered workflow on even ${{ github.event_name }} on branch ${{ github.ref_name }}
+run-name: ${{ github.actor }} triggered workflow on ${{ github.event_name }} on branch ${{ github.ref_name }}
 on:
  pull_request:
   branches: 
@@ -8,6 +8,7 @@ on:
  push:
   branches: main
 jobs:
+ first-job:
   runs-on: ubuntu-latest
   steps:
       - name: Checkout Repository
